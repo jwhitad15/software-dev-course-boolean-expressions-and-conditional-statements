@@ -1,29 +1,3 @@
-/*
-
-Objective:
-You will practice creating and combining boolean expressions
-to drive logic and outcomes in you program.
-
-Instructions:
-If you are not familiar with the concept of a text-based adventure game,
-let's set the scene...
-Example: "You wake up in a dark forest. There are two paths ahead of you:
-one leading to the mountains and one to a village.
-Your choices will determine your fate!"
-
-Define the Requirements: You must:
-  - Write conditional statements to handle player choices.
-  - Use boolean expressions to combine multiple conditions.
-  - Include at least one use of logical operators (&&, ||, !).
-
-Starter Code:
-  - Run the following command in your terminal to install the readline-sync module:
-    npm install readline-sync
-
-Paste the following code into your editor:
-
-*/
-
 const readline = require('readline-sync');
 
 const hasTorch = true;
@@ -38,15 +12,28 @@ if (choice === "mountains" && hasTorch) {
   console.log("It's too dark to proceed. You decide to turn back.");
 } else if (choice === "village" || hasMap) {
   console.log("You find your way to the village.");
-} else {
+} else if (choice === "village" && !hasMap) {
   console.log("You get lost and wander aimlessly.");
 }
 
-/* 
+const hasSoap = false;
+let hasMoney = false;
 
-Add Customization and expand the game:
-  - Add more choices and scenarios.
-  - Include additional items (e.g., a sword, a compass).
-  - Use nested conditionals and logical operators to create complex outcomes.
+console.log("You're dirty and hungry.");
+let newChoice = readline.question("Do you take a shower or do you eat dinner?");
 
-*/
+if (newChoice === "shower" && hasSoap) {
+  console.log("Congratulations. You may clean yourself.");
+} else if (newChoice === "shower" && !hasSoap) {
+  newChoice = readline.question("Do you have money?");
+  if (newChoice === "yes" || newChoice === "yeah" || newChoice === "absolutely" || newChoice === "duhhh"){
+    hasMoney = true;
+    console.log("Congratulations. You may visit the town & country store to buy soap!")
+  } else {
+    console.log("I'm sorry. You'll just have to be dirty tonight.")
+  }
+}
+
+if (newChoice === "dinner") {
+  console.log("Marvelous! The local town & country folks have decided to treat you a special Western 5-course meal. You've been adopted as one of their citizens!")
+}
